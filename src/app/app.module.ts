@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 import { BarChartDirective } from './directives/bar-chart.directive';
 import { MainComponent } from './components/main/main.component';
-import { TimelineComponent } from './timeline/timeline.component';
+import { TimelineComponent } from './components/timeline/timeline.component';
 
 @NgModule({
   declarations: [
