@@ -5,11 +5,7 @@
   </div>
   <div class="item">
     <div class="title">title2</div>
-    <ul class="timeline">
-      <li>○○さんがXXしたよ</li>
-      <li>○○さんがXXしたよ</li>
-      <li>○○さんがXXしたよ</li>
-    </ul>
+    <app-timeline [timeLine]="timeLine$ | async"></app-timeline>
   </div>
   <div class="item">
     <div class="title">title3</div>
