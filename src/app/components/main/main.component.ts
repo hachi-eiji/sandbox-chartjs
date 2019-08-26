@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { TimeLine } from '../timeline/timeline';
 
 @Component({
   selector: 'app-main',
@@ -7,7 +8,7 @@ import { Observable, of } from 'rxjs';
   styleUrls: ['./main.component.scss', './main.component.sp.scss']
 })
 export class MainComponent implements OnInit {
-  timeLine$: Observable<object[]>;
+  timeLine$: Observable<TimeLine[]>;
 
   constructor() { }
 

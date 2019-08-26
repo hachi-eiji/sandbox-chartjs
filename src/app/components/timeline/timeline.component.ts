@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { TimeLine } from './timeline';
 
 @Component({
   selector: 'app-timeline',
@@ -7,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TimelineComponent implements OnInit {
   @Input()
-  timeLine: object[];
+  timeLine: TimeLine[];
 
   constructor() {
   }
@@ -15,7 +16,7 @@ export class TimelineComponent implements OnInit {
   ngOnInit() {
   }
 
-  contentId(index: number, item: any) {
+  contentId(index: number, item: TimeLine) {
     return item.id;
   }
 }
