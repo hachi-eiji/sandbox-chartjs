@@ -1,11 +1,10 @@
 /* autoprefixer grid: autoplace */
 
 .container {
-  display: grid;
-  //IEだと落ちない...
-  // 最小幅300pxを固定して繰り返したい...
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-template-rows: repeat(1, auto);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex: 1 0 auto;
 }
 
 .item {
