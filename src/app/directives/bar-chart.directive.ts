@@ -62,7 +62,7 @@ export class BarChartDirective implements OnInit, OnDestroy, OnChanges {
   }
 
   private create() {
-    const context = this.elementRef.nativeElement.getContext('2d');
+    const context = this.element.nativeElement.getContext('2d');
     this.chart = new Chart(context, this.config);
   }
 }
