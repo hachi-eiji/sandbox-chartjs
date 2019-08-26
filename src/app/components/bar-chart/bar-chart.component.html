@@ -1,9 +1,9 @@
 <div class="container">
   <canvas id="canvas"
           appBarChart
-          [datasets]="datasets"
-          [data]="data"
-          [labels]="labels"
-          [options]="options"
+          [datasets]="config.dataset"
+          [data]="model | async"
+          [labels]="config.labels"
+          [options]="config.options"
   ></canvas>
 </div>
