@@ -8,6 +8,7 @@ import { MainComponent } from './components/main/main.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { BarChartDirective } from './directives/bar-chart.directive';
 import { LineChartDirective } from './directives/line-chart.directive';
+import { LineChartComponent } from './components/line-chart/line-chart.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { LineChartDirective } from './directives/line-chart.directive';
     BarChartComponent,
     LineChartDirective,
     MainComponent,
-    TimelineComponent
+    TimelineComponent,
+    LineChartComponent
   ],
   imports: [
     BrowserModule,

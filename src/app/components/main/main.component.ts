@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { BarChartConfig } from '../bar-chart/bar-chart';
+import { LineChartConfig } from '../line-chart/line-chart';
 import { TimeLine } from '../timeline/timeline';
 
 @Component({
@@ -12,6 +13,9 @@ export class MainComponent implements OnInit {
   timeLine$: Observable<TimeLine[]>;
   barChartConfig: BarChartConfig;
   barChartData: Observable<number[]> | null;
+
+  lineChartConfig: LineChartConfig;
+  lineChartData: Observable<number[]> | null;
 
   constructor() {
   }
@@ -25,6 +29,27 @@ export class MainComponent implements OnInit {
       { id: 5, content: '○○さんがXXしたよ' },
     ]);
 
+    this.createBarChart();
+    this.createLineChart();
+  }
+
+  updateBarChart() {
+    const array: number[] = [];
+    for (let i = 0; i < 6; i++) {
+      array.push(Math.random() * 10);
+    }
+    this.barChartData = of(array);
+  }
+
+  updateLineChart() {
+    const array: number[] = [];
+    for (let i = 0; i < 6; i++) {
+      array.push(Math.random() * 10);
+    }
+    this.lineChartData = of(array);
+  }
+
+  private createBarChart() {
     // TODO: 多分もう1つコンポーネントをラップしないと,このコンポーネントに集積しすすぎている
     this.barChartConfig = {
       labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
@@ -62,11 +87,36 @@ export class MainComponent implements OnInit {
     };
   }
 
-  updateBarChart() {
-    const array: number[] = [];
-    for (let i = 0; i < 6; i++) {
-      array.push(Math.random() * 10);
-    }
-    this.barChartData = of(array);
+  private createLineChart() {
+    this.lineChartConfig = {
+      labels: ['2019年1月', '2019年2月', '2019年3月', '2019年4月', '2019年5月', '2019年6月'],
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      },
+      dataset: [
+        {
+          label: '# of Votes',
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.5)',
+          ],
+          borderColor: [
+            'rgba(255,99,132,1)',
+            'rgba(255,99,132,1)',
+            'rgba(255,99,132,1)',
+            'rgba(255,99,132,1)',
+            'rgba(255,99,132,1)',
+            'rgba(255,99,132,1)',
+          ],
+          borderWidth: 1
+        }
+      ]
+    };
+    this.lineChartData = of([1, 2, 3, 4, 5, 6]);
   }
 }

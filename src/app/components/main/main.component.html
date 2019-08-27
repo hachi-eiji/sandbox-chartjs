@@ -10,5 +10,7 @@
   </div>
   <div class="item">
     <div class="title">title3</div>
+    <app-line-chart [config]="lineChartConfig" [model]="lineChartData"></app-line-chart>
+    <button (click)="updateLineChart()">update</button>
   </div>
 </div>

@@ -22,7 +22,7 @@ export class LineChartDirective implements OnInit, OnDestroy, OnChanges {
 
   get config(): ChartConfiguration {
     return {
-      type: 'bar',
+      type: 'line',
       data: {
         labels: this.labels,
         datasets: this.datasets
