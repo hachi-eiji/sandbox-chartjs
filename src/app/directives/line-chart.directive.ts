@@ -58,7 +58,6 @@ export class LineChartDirective implements OnInit, OnDestroy, OnChanges {
 
   ngOnInit(): void {
     this.create();
-    this.firstChange = false;
     if (this.data) {
       this.setData(this.data);
     } else if (this.datasets) {
@@ -67,6 +66,7 @@ export class LineChartDirective implements OnInit, OnDestroy, OnChanges {
       this.setLabels(this.labels);
     }
     this.chart.update();
+    this.firstChange = false;
   }
 
   private setData(data) {
