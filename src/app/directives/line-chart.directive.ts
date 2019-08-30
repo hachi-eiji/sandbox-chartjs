@@ -8,7 +8,7 @@ export class LineChartDirective implements OnInit, OnDestroy, OnChanges {
   @Input()
   labels: string[] = [];
   @Input()
-  datasets: any[];
+  datasets: any[] = [];
   @Input()
   options: ChartOptions;
 
@@ -31,11 +31,6 @@ export class LineChartDirective implements OnInit, OnDestroy, OnChanges {
     };
   }
 
-  ngOnInit(): void {
-    this.create();
-    this.firstChange = false;
-  }
-
   ngOnChanges(changes: SimpleChanges): void {
     // ngOnInitの前に呼ばれるのでそのときはスキップする
     if (this.firstChange) {
@@ -44,11 +39,11 @@ export class LineChartDirective implements OnInit, OnDestroy, OnChanges {
     for (const name in changes) {
       const change = changes[name];
       if (name === 'data') {
-        this.chart.data.datasets[0].data = change.currentValue;
+        this.setData(change.currentValue);
       } else if (name === 'datasets') {
-        this.chart.data.datasets[0] = change.currentValue;
+        this.setDatasets(change.currentValue);
       } else if (name === 'label') {
-        this.chart.data.labels = change.currentValue;
+        this.setLabels(change.currentValue);
       }
     }
     this.chart.update();
@@ -59,6 +54,32 @@ export class LineChartDirective implements OnInit, OnDestroy, OnChanges {
       this.chart.destroy();
       this.chart = null;
     }
+  }
+
+  ngOnInit(): void {
+    this.create();
+    this.firstChange = false;
+    if (this.data) {
+      this.setData(this.data);
+      this.chart.data.datasets[0].data = this.data;
+    } else if (this.datasets) {
+      this.setDatasets(this.datasets);
+    } else if (name === 'label') {
+      this.setLabels(this.labels);
+    }
+    this.chart.update();
+  }
+
+  private setData(data) {
+    this.chart.data.datasets[0].data = data;
+  }
+
+  private setDatasets(datasets) {
+    this.chart.data.datasets[0] = datasets;
+  }
+
+  private setLabels(labels) {
+    this.chart.data.labels = labels;
   }
 
   private create() {
