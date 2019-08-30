@@ -33,6 +33,10 @@ export class BarChartDirective implements OnInit, OnDestroy, OnChanges {
 
   ngOnInit(): void {
     this.create();
+    if (this.data) {
+      this.chart.data.datasets[0].data = this.data;
+    }
+    this.chart.update();
     this.firstChange = false;
   }
 
