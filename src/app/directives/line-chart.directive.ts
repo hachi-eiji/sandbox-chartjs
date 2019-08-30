@@ -61,7 +61,6 @@ export class LineChartDirective implements OnInit, OnDestroy, OnChanges {
     this.firstChange = false;
     if (this.data) {
       this.setData(this.data);
-      this.chart.data.datasets[0].data = this.data;
     } else if (this.datasets) {
       this.setDatasets(this.datasets);
     } else if (name === 'label') {
