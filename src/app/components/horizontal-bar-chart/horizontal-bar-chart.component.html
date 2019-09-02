@@ -1,0 +1,9 @@
+<div class="container">
+  <canvas id="canvas"
+          appHorizontalBarChart
+          [datasets]="config.dataset"
+          [data]="model | async"
+          [labels]="config.labels"
+          [options]="config.options"
+  ></canvas>
+</div>
