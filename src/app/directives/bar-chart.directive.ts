@@ -20,9 +20,13 @@ export class BarChartDirective implements OnInit, OnDestroy, OnChanges {
     this.element = elementRef;
   }
 
+  get type(): string {
+    return 'bar';
+  }
+
   get config(): ChartConfiguration {
     return {
-      type: 'bar',
+      type: this.type,
       data: {
         labels: this.labels,
         datasets: this.datasets
