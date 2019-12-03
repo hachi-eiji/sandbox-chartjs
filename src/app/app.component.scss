@@ -1,0 +1,9 @@
+.menu-list {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+
+  > li:not(:first-child) {
+    margin-left: 0.5em;
+  }
+}
