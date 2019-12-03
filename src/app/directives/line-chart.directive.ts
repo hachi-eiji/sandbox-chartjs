@@ -1,14 +1,14 @@
 import { Directive, ElementRef, OnInit, OnDestroy, OnChanges, SimpleChanges, Input } from '@angular/core';
 import { ChartConfiguration, Chart, ChartOptions } from 'chart.js';
 
-@Directive({ selector: 'canvas[appBarChart]' })
-export class BarChartDirective implements OnInit, OnDestroy, OnChanges {
+@Directive({ selector: 'canvas[appLineChart]' })
+export class LineChartDirective implements OnInit, OnDestroy, OnChanges {
   @Input()
   data: number[];
   @Input()
   labels: string[] = [];
   @Input()
-  datasets: any[];
+  datasets: any[] = [];
   @Input()
   options: ChartOptions;
 
@@ -20,28 +20,15 @@ export class BarChartDirective implements OnInit, OnDestroy, OnChanges {
     this.element = elementRef;
   }
 
-  get type(): string {
-    return 'bar';
-  }
-
   get config(): ChartConfiguration {
     return {
-      type: this.type,
+      type: 'line',
       data: {
         labels: this.labels,
         datasets: this.datasets
       },
       options: this.options
     };
-  }
-
-  ngOnInit(): void {
-    this.create();
-    if (this.data) {
-      this.chart.data.datasets[0].data = this.data;
-    }
-    this.chart.update();
-    this.firstChange = false;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -52,11 +39,11 @@ export class BarChartDirective implements OnInit, OnDestroy, OnChanges {
     for (const name in changes) {
       const change = changes[name];
       if (name === 'data') {
-        this.chart.data.datasets[0].data = change.currentValue;
+        this.setData(change.currentValue);
       } else if (name === 'datasets') {
-        this.chart.data.datasets[0] = change.currentValue;
+        this.setDatasets(change.currentValue);
       } else if (name === 'label') {
-        this.chart.data.labels = change.currentValue;
+        this.setLabels(change.currentValue);
       }
     }
     this.chart.update();
@@ -67,6 +54,27 @@ export class BarChartDirective implements OnInit, OnDestroy, OnChanges {
       this.chart.destroy();
       this.chart = null;
     }
+  }
+
+  ngOnInit(): void {
+    this.create();
+    if (this.data) {
+      this.setData(this.data);
+    }
+    this.chart.update();
+    this.firstChange = false;
+  }
+
+  private setData(data) {
+    this.chart.data.datasets[0].data = data;
+  }
+
+  private setDatasets(datasets) {
+    this.chart.data.datasets[0] = datasets;
+  }
+
+  private setLabels(labels) {
+    this.chart.data.labels = labels;
   }
 
   private create() {

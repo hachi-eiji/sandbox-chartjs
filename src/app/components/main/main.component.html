@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="item">
+    <div class="title">title1</div>
+    <app-bar-chart [config]="barChartConfig" [model]="barChartData"></app-bar-chart>
+    <button (click)="updateBarChart()">update</button>
+  </div>
+  <div class="item">
+    <div class="title">title2</div>
+    <app-timeline [timeLine]="timeLine$ | async"></app-timeline>
+  </div>
+  <div class="item">
+    <div class="title">title3</div>
+    <app-line-chart [config]="lineChartConfig" [model]="lineChartData"></app-line-chart>
+    <button (click)="updateLineChart()">update</button>
+  </div>
+  <div class="item">
+    <div class="title">title3</div>
+    <app-horizontal-bar-chart [config]="barChartConfig" [model]="barChartData"></app-horizontal-bar-chart>
+    <button (click)="updateBarChart()">update</button>
+  </div>
+</div>
